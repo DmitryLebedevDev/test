@@ -14,7 +14,7 @@ jobs:
           go-version: 1.16.4
 
       - name: b
-        run: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: c
         run: go mod download
