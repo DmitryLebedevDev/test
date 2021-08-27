@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: a
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.4
+
+      - name: b
+        run: actions/checkout@v2
+
+      - name: c
+        run: go mod download
+
+      - name: d
+        run: go build
+          
+        
