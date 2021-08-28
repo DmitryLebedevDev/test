@@ -1,6 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: to docker hub
+
 on:
   push:
     tags:
@@ -15,22 +14,27 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
       - name: install go
         uses: actions/setup-go@v2
         with:
           go-version: 1.16.4
+
       - name: load code
         uses: actions/checkout@v2
+
       - name: fetch dep
         run: go mod download
+
       - name: build
         run: go build -v
+
       - name: push
         id: push
         uses: docker/build-push-action@v2
         with:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:latest
+
       - name: info
         run: echo ${{ steps.build.outputs.digest }}
-  
