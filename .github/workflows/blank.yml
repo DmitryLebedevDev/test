@@ -21,5 +21,12 @@ jobs:
 
       - name: d
         run: go build
+      
+      - name: c
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          tags: ${{ github.event.repository.name }}:latest, ${{ github.repository }}:latest
+
           
         
